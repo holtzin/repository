@@ -1,0 +1,1 @@
+// buscar entre os trabalhadores (lista de trabalhores, proffisao desejada) -> retorna os da lista que estao disponiveis)
