@@ -21,7 +21,6 @@ string lerTexto(string mensagem)
     cout << mensagem;
     cin >> texto;
     return texto;
-    string texto;
 }
 
 Data lerData()
