@@ -1,42 +1,47 @@
+#ifndef PESSOA_H
+#define PESSOA_H
+
 #include <iostream>
+#include <string>
+
 using namespace std;
 
-class Pessoa
-{
-    public:
+class Pessoa {
+    protected:
+    string nome;
+    string cpf;
     string fone;
     int idade;
-
-    Pessoa(int idade, string telefone, string nome, string cpf, bool genero)
-    {
-        this->idade = idade;
-        this->fone = telefone;
-        this->setNome(nome);
-        this->setCpf(cpf);
-        this->setGenero(genero);
-    }
- // precisa fazer o destrutor virtual e o construtor default e uma função exibir a pessoa que é virtual tbm pra 
-    private:
-    string nome, cpf;
     bool masculino;
 
-    string setNome(string nome)
-    {
-        this->nome = nome;
-        return;
+    public:
+    Pessoa() : nome(""), cpf(""), fone(""), idade(0), masculino(true) {}
+
+    Pessoa(int idade, string telefone, string nome,
+           string cpf, bool genero)
+        : nome(nome), cpf(cpf), fone(telefone), idade(idade), masculino(genero) {}
+
+    virtual ~Pessoa() {}
+
+    string getNome() {
+        return nome;
     }
 
-    string setCpf(string cpf)
-    {
-        this->cpf = cpf;
-        return;
+    string getCpf() {
+        return cpf;
     }
 
-    bool setGenero(bool genero)
-    {
-        this->masculino = genero;
-        return true;
+    string getFone() {
+        return fone;
     }
-    
 
+    int getIdade() {
+        return idade;
+    }
+
+    bool isMasculino() {
+        return masculino;
+    }
 };
+
+#endif

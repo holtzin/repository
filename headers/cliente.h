@@ -1,40 +1,46 @@
+#ifndef CLIENTE_H
+#define CLIENTE_H
+
 #include <iostream>
-#include "pessoa.h" 
+#include <string>
+
+#include "pessoa.h"
 #include "trabalhador.h"
 
 using namespace std;
 
-#ifndef CLIENTE_H
-#define CLIENTE_H
-
-int idTotal = 0;
-
-class Cliente : Pessoa { // Cliente também é uma pessoa com capacidades de alugar um trabalhador -> marido.
-
+class Cliente : public Pessoa {
     public:
-    string email, endereco;
+    static inline int nextId = 1;
+
     int id;
-    
-    Cliente(string email, string endereco)
-    {
-        this->email = email;
-        this->endereco = endereco;
-        this->id = idTotal++;
+    string email;
+    string endereco;
+
+    Cliente() : Pessoa(), id(nextId++), email(""), endereco("") {}
+
+    Cliente(string nome, string cpf, int idade,
+            string telefone, bool genero,
+            string email, string endereco)
+        : Pessoa(idade, telefone, nome, cpf, genero),
+          id(nextId++),
+          email(email),
+          endereco(endereco) {}
+
+    int getId() {
+        return id;
     }
 
-    void avaliar(Trabalhador trabalhador, float nota)
-    {
-        trabalhador.setNota(nota);
-    }
-    
-    string getEmail()
-    {
-        return this->email;
+    string getEmail() {
+        return email;
     }
 
-    string getEndereco()
-    {
-        return this->endereco;
+    string getEndereco() {
+        return endereco;
+    }
+
+    void avaliar(Trabalhador &trabalhador, float nota) {
+        trabalhador.receberAvaliacao(nota);
     }
 };
 

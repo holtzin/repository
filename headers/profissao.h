@@ -1,31 +1,33 @@
+#ifndef PROFISSAO_H
+#define PROFISSAO_H
+
 #include <iostream>
+#include <cstring>
+#include <string>
+
 using namespace std;
 
 class Profissao {
     public:
     string profissao;
+    long int salario;
 
-    Profissao(string profissao, long int salarioAtual) {
-        setProfissao(profissao);
-        this->setSalario(salarioAtual);
-    }
+    Profissao() : profissao(""), salario(0) {}
+
+    Profissao(string profissao, long int salarioAtual)
+        : profissao(profissao), salario(salarioAtual) {}
 
     void setProfissao(string profissao) {
         this->profissao = profissao;
-    } 
-
-    void mostrarProfissao() {
-        cout << "|" << "Profissao" << this->profissao << endl;
     }
 
-    private:
-    long int salario;
-
-    void setSalario(long int salario) {
-        this->salario = salario;
+    string getProfissao() {
+        return profissao;
     }
 
     long int getSalario() {
-        return this->salario;
+        return salario;
     }
 };
+
+#endif

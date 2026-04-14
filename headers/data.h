@@ -1,32 +1,37 @@
+#ifndef DATA_H
+#define DATA_H
+
 #include <iostream>
 
 using namespace std;
 
-#ifndef DATA_H
-#define DATA_H
-
 class Data {
     public:
-    int dia; int mes; int ano;
+    int dia;
+    int mes;
+    int ano;
 
-    Data(int dia, int mes, int ano)  {
-        setDia(dia); 
-        setMes(mes);
-        setAno(ano);
-    }
+    Data(int dia, int mes, int ano)
+        : dia(dia), mes(mes), ano(ano) {}
 
-// colocar verificações e bool nesses set ou deixar void igual os outros?
     bool setDia(int dia) {
+         if (dia < 1 || dia > 31) {
+             return false;
+         }
          this->dia = dia;
          return true;
     }
+
     bool setMes(int mes) {
+        if (mes < 1 || mes > 12) {
+            return false;
+        }
         this->mes = mes;
-        return true; // Talvez coloar verificações aqui mais é complicado pois se o ano virar o mes pode ser menor que o atual (mes 12 indo pro 1);
+        return true;
     }
 
     bool setAno(int ano) {
-        if (ano < this->ano) {
+        if (ano < 1900) {
             return false;
         }
         this->ano = ano;
@@ -34,18 +39,11 @@ class Data {
     }
 
     void mostrarData() {
-        cout << "|" << "Dia: " << this->dia << " |" << "Mes: " << this->mes << " |" << "Ano: " << this->ano << "|" << endl;
+        cout << "|Dia: " << dia << " | Mes: " << mes << " | Ano: " << ano << "|" << endl;
     }
 
-    int getDia() {
-        return this->dia;
-    }
-
-    int getMes() {
-        return this->mes;
-    }
-    int getAno() {
-        return this->ano;
+    bool operator==(Data other) {
+        return dia == other.dia && mes == other.mes && ano == other.ano;
     }
 };
 
