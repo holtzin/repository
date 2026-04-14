@@ -10,16 +10,25 @@ using namespace std;
 int lerInteiro(string mensagem)
 {
     int valor;
-    cout << mensagem;
-    cin >> valor;
-    return valor;
+    while (true) {
+        cout << mensagem;
+        cin >> valor;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada inválida. Digite um número inteiro." << endl;
+        } else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return valor;
+        }
+    }
 }
 
 string lerTexto(string mensagem)
 {
     string texto;
     cout << mensagem;
-    cin >> texto;
+    getline(cin, texto);
     return texto;
 }
 
